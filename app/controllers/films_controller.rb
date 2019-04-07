@@ -19,7 +19,7 @@ class FilmsController < ApplicationController
     params.require(:id)
 
     if params[:id].to_i < 1 || params[:id].to_i > 7
-      render json: { errors: { error: "Id #{ params[:id] } is not a valid parameter. Valid parameters are 1 - 7 inclusive" } }, status: 404
+      render json: { errors: { error: Errors::Messages.invalid_id_message(params[:id]) } }, status: 404
     end
   end
 
@@ -28,8 +28,10 @@ class FilmsController < ApplicationController
   end
 
   def parse_api_response
+
     if @star_wars_api_response.status != 200
-      render json: { errors: { error: 'StarWars API Service Unavailable, please check https://swapi.co/ for status' } }, status: 503
+      render json: { errors: { error: Errors::Messages::STAR_WARS_API_UNAVAILABLE } }, status: 503
+      return
     end
 
     @response_data = JSON.parse(@star_wars_api_response.body)
