@@ -28,6 +28,10 @@ class FilmsController < ApplicationController
   end
 
   def parse_api_response
+    if @star_wars_api_response.status != 200
+      render json: { errors: { error: 'StarWars API Service Unavailable, please check https://swapi.co/ for status' } }, status: 503
+    end
+
     @response_data = JSON.parse(@star_wars_api_response.body)
   end
 
