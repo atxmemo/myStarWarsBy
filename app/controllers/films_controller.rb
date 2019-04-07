@@ -4,12 +4,12 @@ class FilmsController < ApplicationController
   before_action :set_up_connector, only: [:index, :show]
 
   def index
-    @star_wars_api_response = @star_wars_api.get '/api/films/'
+    @star_wars_api_response = @star_wars_api.get Connectors::StarWarsConnector::INDEX_PATH
     parse_api_response
   end
 
   def show
-    @star_wars_api_response = @star_wars_api.get "/api/films/#{params[:id]}/"
+    @star_wars_api_response = @star_wars_api.get Connectors::StarWarsConnector.show_path params[:id]
     parse_api_response
   end
 
