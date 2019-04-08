@@ -1,24 +1,28 @@
-# README
+# myStarWarsBy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a API only ruby on rails application that replicates the /films and /films/:id endpoint from the [Star Wars API](https://swapi.co/)
 
-Things you may want to cover:
+## Ruby version
+This project uses ruby 2.5.5
 
-* Ruby version
+## How to run the test suite
+Execute the `rails test` command from the top level directory to run the application tests
 
-* System dependencies
+## Running the docker image
+The latest code on master for this project has been Dockerized and the image can be found on my personal Docker Hub profile
 
-* Configuration
+To pull this image and spin up a container on your local machine running docker you can run the following command:
 
-* Database creation
+> docker run -p 80:3000 gterra023/take-home:master
 
-* Database initialization
+This command will pull the image tagged `master` from my `take-home` repository within my `gterra023` profile
 
-* How to run the test suite
+## Pinging AWS EC2 
 
-* Services (job queues, cache servers, search engines, etc.)
+I have configured and booted a Linux AMI instance on AWS EC2 to run this image on a container. 
+You can ping the application using the following endpoints:
 
-* Deployment instructions
+* http://ec2-18-224-17-73.us-east-2.compute.amazonaws.com/films
+* http://ec2-18-224-17-73.us-east-2.compute.amazonaws.com/films/:id
 
-* ...
+> NOTE: valid :id parameters are 1 - 7 inclusive
